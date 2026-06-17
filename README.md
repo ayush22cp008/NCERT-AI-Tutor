@@ -12,15 +12,8 @@
 ---
 
 ## 🚀 Live Demo
+
 👉 **[Try it here](https://ncert-ai-tutor-appdhcgh4agx3ppbvxt4y7j.streamlit.app)**
-
----
-
-## 📸 What It Looks Like
-
-> Dark theme, WhatsApp-style chat bubbles, Gen Z Discord+Spotify aesthetic.
-
-_(Add a screenshot here after running the app — `screenshot.png`)_
 
 ---
 
