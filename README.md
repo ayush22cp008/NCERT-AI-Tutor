@@ -13,7 +13,9 @@
 
 ## 🚀 Live Demo
 
-👉 **[Try it here](https://ncert-ai-tutor-appdhcgh4agx3ppbvxt4y7j.streamlit.app)**
+**Try it here →** https://ncert-ai-tutor-appdhcgh4agx3ppbvxt4y7j.streamlit.app
+
+> The live demo runs on **Streamlit Cloud** — no local setup needed, open and start using instantly.
 
 ---
 
