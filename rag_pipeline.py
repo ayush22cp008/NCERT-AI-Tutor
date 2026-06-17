@@ -246,17 +246,18 @@ def is_valid_chunk(doc, subject: str) -> bool:
     """
     Check whether a retrieved Document belongs to the selected subject.
 
-    ChromaDB stores whatever path was used at ingest time — which on Windows
-    can be a full absolute path like:
+    ChromaDB stores whatever path was used at ingest time — on Windows this is
+    a full absolute path with backslashes:
         C:\\Users\\ayush\\Desktop\\NCERT AI Tutor\\data\\ncert_pdfs\\jemh101.pdf
-    or a relative path like:
-        data/ncert_pdfs\\jemh101.pdf
 
-    Using os.path.basename() reliably extracts "jemh101.pdf" from any variant,
-    then we check the prefix against the expected subject prefix.
+    os.path.basename() on Linux does NOT strip Windows backslashes — it would
+    return the entire string unchanged. So we normalise separators first:
+        source.replace("\\", "/").split("/")[-1]
+    This works correctly on both Windows and Linux regardless of path format.
     """
     source = doc.metadata.get("source", "")
-    filename = os.path.basename(source).lower()
+    # Normalise Windows backslashes → forward slashes, then take last segment
+    filename = source.replace("\\", "/").split("/")[-1].lower()
     prefix = SUBJECT_PREFIX.get(subject, "").lower()
     if not prefix:
         return True  # Unknown subject — allow all
