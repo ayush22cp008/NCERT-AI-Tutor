@@ -1,0 +1,25 @@
+# API keys and secrets
+.env
+
+# NCERT PDFs — large files, download separately from ncert.nic.in
+data/ncert_pdfs/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
