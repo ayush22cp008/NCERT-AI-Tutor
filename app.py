@@ -23,6 +23,11 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+# ── TEMPORARY DEBUG — remove after confirming API key is set on Streamlit Cloud ──
+groq_key = os.getenv("GROQ_API_KEY")
+st.write(f"DEBUG: GROQ key found = {bool(groq_key)}")
+# ─────────────────────────────────────────────────────────────────────────────────
+
 # ─────────────────────────────────────────────────────────────────────────────
 # GLOBAL CSS  (must be the FIRST st.markdown after set_page_config)
 # Google Fonts loaded via @import inside <style> — NOT a separate <link> tag
