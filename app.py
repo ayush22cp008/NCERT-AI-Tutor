@@ -23,10 +23,30 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# ── TEMPORARY DEBUG — remove after confirming API key is set on Streamlit Cloud ──
-groq_key = os.getenv("GROQ_API_KEY")
-st.write(f"DEBUG: GROQ key found = {bool(groq_key)}")
-# ─────────────────────────────────────────────────────────────────────────────────
+# ── TEMPORARY DEBUG — inspect vector database and path logic ──
+import os
+from rag_pipeline import load_vector_store, is_valid_chunk, SUBJECT_PREFIX
+
+st.write("=== DEBUG ===")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+st.write(f"BASE_DIR: {BASE_DIR}")
+st.write(f"chroma_db exists: {os.path.exists(os.path.join(BASE_DIR, 'chroma_db'))}")
+
+try:
+    vs = load_vector_store()
+    docs = vs.similarity_search("photosynthesis", k=5)
+    st.write(f"Total docs retrieved: {len(docs)}")
+    for d in docs:
+        src = d.metadata.get("source", "")
+        filename = src.replace("\\", "/").split("/")[-1]
+        st.write(f"  source: {src}")
+        st.write(f"  filename: {filename}")
+        st.write(f"  valid for Science: {is_valid_chunk(d, 'Science')}")
+except Exception as e:
+    st.write(f"ERROR: {e}")
+st.write("=== END DEBUG ===")
+# ─────────────────────────────────────────────────────────────
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 # GLOBAL CSS  (must be the FIRST st.markdown after set_page_config)
