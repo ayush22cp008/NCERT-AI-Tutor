@@ -29,8 +29,9 @@ load_dotenv()
 # ─────────────────────────────────────────────────────────────────────────────
 # CONFIGURATION
 # ─────────────────────────────────────────────────────────────────────────────
-CHROMA_DB_DIR  = "chroma_db"
-PDF_DIR        = "data/ncert_pdfs"
+BASE_DIR       = os.path.dirname(os.path.abspath(__file__))
+CHROMA_DB_DIR  = os.path.join(BASE_DIR, "chroma_db")
+PDF_DIR        = os.path.join(BASE_DIR, "data", "ncert_pdfs")
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"
 GROQ_MODEL     = "llama-3.1-8b-instant"
 
